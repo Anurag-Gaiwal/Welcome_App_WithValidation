@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title> Welcome Application with Validation by Anurag Gaiwal </title>
+	<style>
+		*{font-size:50px}
+		body{background-color:#FFE4E1;}
+		.btn{ margin-left:30px; border-radius:30px;}
+		.btn:hover{color:red;}
+	</style>
+</head>
+<body>
+<center>
+	<h1> Welcome Application with Validation </h1>
+	<form onsubmit="check()">
+		<input type="text" placeholder="Enter your name" id="name" />
+		<br/> <br/>
+		<input type="submit" value="Submit" class="btn">
+	</form>
+	<h2 id="msg"/>
+
+	<script>
+		function check(){
+		
+		event.preventDefault();
+		let name = document.getElementById("name");
+		let msg = document.getElementById("msg");
+
+		if(name.value == "")
+		{
+			alert("Name cannot be blank");
+			msg.innerHTML = "";
+			name.focus();
+			return;
+		}
+
+		if(name.value.trim() == "")
+		{
+			alert("Name cannot be blank spaces");
+			msg.innerHTML = "";
+			name.value = "";
+			name.focus();
+			return;
+		}
+
+		if(!name.value.match(/^[A-Za-z ]+$/))
+		{
+			alert("Name should contain only Alphabets");
+			msg.innerHTML = "";
+			name.value = "";
+			name.focus();
+			return;
+		}
+		
+		let date = new Date();
+		let hr = date.getHours();
+		let ans = "";
+		if(hr < 12)	ans = "Good Morning " + name.value;
+		else if(hr < 16)	ans = "Good Afternoon " + name.value;	
+		else 	ans = "Good Evening " + name.value;	
+		msg.innerHTML = ans;
+		}
+</script>
+</center>
+</body>
+</html>
